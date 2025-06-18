@@ -1,0 +1,33 @@
+{
+  "name": "agency-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "slicemachine": "start-slicemachine"
+  },
+  "dependencies": {
+    "@prismicio/client": "^7.17.3",
+    "@prismicio/next": "^2.0.1",
+    "@prismicio/react": "^3.2.1",
+    "next": "15.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@slicemachine/adapter-next": "^0.3.78",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.3",
+    "slice-machine-ui": "^2.16.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
