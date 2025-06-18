@@ -4,6 +4,34 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Content for client documents
+ */
+interface ClientDocumentData {
+  /**
+   * name field in *client*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: client.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
+ * client document from Prismic
+ *
+ * - **API ID**: `client`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ClientDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<ClientDocumentData>, "client", Lang>;
+
 type HomeDocumentDataSlicesSlice = HeroSlice;
 
 /**
@@ -65,7 +93,186 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-export type AllDocumentTypes = HomeDocument;
+/**
+ * Content for industry documents
+ */
+interface IndustryDocumentData {
+  /**
+   * name field in *industry*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: industry.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
+ * industry document from Prismic
+ *
+ * - **API ID**: `industry`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type IndustryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<IndustryDocumentData>,
+    "industry",
+    Lang
+  >;
+
+/**
+ * Content for project documents
+ */
+interface ProjectDocumentData {
+  /**
+   * name field in *project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: project name
+   * - **API ID Path**: project.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * cover image field in *project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.cover_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover_image: prismic.ImageField<never>;
+
+  /**
+   * date field in *project*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: date
+   * - **API ID Path**: project.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date: prismic.DateField;
+
+  /**
+   * is_featured field in *project*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: project.is_featured
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  is_featured: prismic.BooleanField;
+
+  /**
+   * description field in *project*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: description
+   * - **API ID Path**: project.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * client field in *project*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.client
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  client: prismic.ContentRelationshipField<"client">;
+
+  /**
+   * industries field in *project*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.industries
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  industries: prismic.ContentRelationshipField<"industry">;
+
+  /**
+   * services field in *project*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.services
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  services: prismic.ContentRelationshipField<"service">;
+}
+
+/**
+ * project document from Prismic
+ *
+ * - **API ID**: `project`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProjectDocumentData>,
+    "project",
+    Lang
+  >;
+
+/**
+ * Content for service documents
+ */
+interface ServiceDocumentData {
+  /**
+   * name field in *service*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
+ * service document from Prismic
+ *
+ * - **API ID**: `service`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ServiceDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ServiceDocumentData>,
+    "service",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | ClientDocument
+  | HomeDocument
+  | IndustryDocument
+  | ProjectDocument
+  | ServiceDocument;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -140,9 +347,17 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      ClientDocument,
+      ClientDocumentData,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      IndustryDocument,
+      IndustryDocumentData,
+      ProjectDocument,
+      ProjectDocumentData,
+      ServiceDocument,
+      ServiceDocumentData,
       AllDocumentTypes,
       HeroSlice,
       HeroSliceDefaultPrimary,
