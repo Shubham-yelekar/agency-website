@@ -6,7 +6,8 @@ export const components = {
   hero: dynamic(() => import("./Hero")),
   project_embed: dynamic(() => import("./ProjectEmbed")),
   project_images: dynamic(() => import("./ProjectImages")),
-  project_video: dynamic(() => import("./ProjectVideo")),
+  project_two_images: dynamic(() => import("./ProjectTwoImages")),
   project_video_url: dynamic(() => import("./ProjectVideoUrl")),
   project_video_vimeo: dynamic(() => import("./ProjectVideoVimeo")),
+  projects: dynamic(() => import("./Projects")),
 };

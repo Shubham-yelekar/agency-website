@@ -61,15 +61,6 @@
           "customtypes": ["client"]
         }
       },
-      "industries": {
-        "type": "Link",
-        "config": {
-          "label": "industries",
-          "select": "document",
-          "repeat": false,
-          "customtypes": ["industry"]
-        }
-      },
       "project_services": {
         "type": "Group",
         "config": {
@@ -88,11 +79,25 @@
           }
         }
       },
+      "industries": {
+        "type": "Link",
+        "config": {
+          "label": "Industries",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "project_two_images": {
+              "type": "SharedSlice"
+            },
             "project_video_vimeo": {
               "type": "SharedSlice"
             },
@@ -100,9 +105,6 @@
               "type": "SharedSlice"
             },
             "project_images": {
-              "type": "SharedSlice"
-            },
-            "project_video": {
               "type": "SharedSlice"
             },
             "project_embed": {

@@ -19,11 +19,13 @@ const ProjectVideoVimeo: FC<ProjectVideoVimeoProps> = ({ slice }) => {
       className="aspect-video"
     >
       <iframe
-        title="vimeo-player"
         src={slice.primary.vimeo_url || undefined}
-        width="100%"
-        height="100%"
-        allowFullScreen
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+        title="Tech Product Video 1"
       ></iframe>
     </section>
   );

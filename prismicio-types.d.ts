@@ -141,10 +141,10 @@ export interface ProjectDocumentDataProjectServicesItem {
 }
 
 type ProjectDocumentDataSlicesSlice =
+  | ProjectTwoImagesSlice
   | ProjectVideoVimeoSlice
   | ProjectVideoUrlSlice
   | ProjectImagesSlice
-  | ProjectVideoSlice
   | ProjectEmbedSlice;
 
 /**
@@ -219,17 +219,6 @@ interface ProjectDocumentData {
   client: prismic.ContentRelationshipField<"client">;
 
   /**
-   * industries field in *project*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project.industries
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  industries: prismic.ContentRelationshipField<"industry">;
-
-  /**
    * Project Services field in *project*
    *
    * - **Field Type**: Group
@@ -240,6 +229,19 @@ interface ProjectDocumentData {
    */
   project_services: prismic.GroupField<
     Simplify<ProjectDocumentDataProjectServicesItem>
+  >;
+
+  /**
+   * Industries field in *project*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.industries
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  industries: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
   >;
 
   /**
@@ -452,48 +454,58 @@ export type ProjectImagesSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *ProjectVideo → Default → Primary*
+ * Primary content in *ProjectTwoImages → Default → Primary*
  */
-export interface ProjectVideoSliceDefaultPrimary {
+export interface ProjectTwoImagesSliceDefaultPrimary {
   /**
-   * video field in *ProjectVideo → Default → Primary*
+   * image 1 field in *ProjectTwoImages → Default → Primary*
    *
-   * - **Field Type**: Link to Media
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_video.default.primary.video
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: project_two_images.default.primary.image_1
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  video: prismic.LinkToMediaField<prismic.FieldState, never>;
+  image_1: prismic.ImageField<never>;
+
+  /**
+   * image 2 field in *ProjectTwoImages → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_two_images.default.primary.image_2
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image_2: prismic.ImageField<never>;
 }
 
 /**
- * Default variation for ProjectVideo Slice
+ * Default variation for ProjectTwoImages Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ProjectVideoSliceDefault = prismic.SharedSliceVariation<
+export type ProjectTwoImagesSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<ProjectVideoSliceDefaultPrimary>,
+  Simplify<ProjectTwoImagesSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *ProjectVideo*
+ * Slice variation for *ProjectTwoImages*
  */
-type ProjectVideoSliceVariation = ProjectVideoSliceDefault;
+type ProjectTwoImagesSliceVariation = ProjectTwoImagesSliceDefault;
 
 /**
- * ProjectVideo Shared Slice
+ * ProjectTwoImages Shared Slice
  *
- * - **API ID**: `project_video`
- * - **Description**: ProjectVideo
+ * - **API ID**: `project_two_images`
+ * - **Description**: ProjectTwoImages
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ProjectVideoSlice = prismic.SharedSlice<
-  "project_video",
-  ProjectVideoSliceVariation
+export type ProjectTwoImagesSlice = prismic.SharedSlice<
+  "project_two_images",
+  ProjectTwoImagesSliceVariation
 >;
 
 /**
@@ -586,6 +598,51 @@ export type ProjectVideoVimeoSlice = prismic.SharedSlice<
   ProjectVideoVimeoSliceVariation
 >;
 
+/**
+ * Primary content in *Projects → Default → Primary*
+ */
+export interface ProjectsSliceDefaultPrimary {
+  /**
+   * All projects field in *Projects → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.default.primary.all_projects
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  all_projects: prismic.ContentRelationshipField<"project">;
+}
+
+/**
+ * Default variation for Projects Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProjectsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Projects*
+ */
+type ProjectsSliceVariation = ProjectsSliceDefault;
+
+/**
+ * Projects Shared Slice
+ *
+ * - **API ID**: `projects`
+ * - **Description**: Projects
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectsSlice = prismic.SharedSlice<
+  "projects",
+  ProjectsSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -633,10 +690,10 @@ declare module "@prismicio/client" {
       ProjectImagesSliceDefaultPrimary,
       ProjectImagesSliceVariation,
       ProjectImagesSliceDefault,
-      ProjectVideoSlice,
-      ProjectVideoSliceDefaultPrimary,
-      ProjectVideoSliceVariation,
-      ProjectVideoSliceDefault,
+      ProjectTwoImagesSlice,
+      ProjectTwoImagesSliceDefaultPrimary,
+      ProjectTwoImagesSliceVariation,
+      ProjectTwoImagesSliceDefault,
       ProjectVideoUrlSlice,
       ProjectVideoUrlSliceDefaultPrimary,
       ProjectVideoUrlSliceVariation,
@@ -645,6 +702,10 @@ declare module "@prismicio/client" {
       ProjectVideoVimeoSliceDefaultPrimary,
       ProjectVideoVimeoSliceVariation,
       ProjectVideoVimeoSliceDefault,
+      ProjectsSlice,
+      ProjectsSliceDefaultPrimary,
+      ProjectsSliceVariation,
+      ProjectsSliceDefault,
     };
   }
 }

@@ -3,21 +3,20 @@ import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
 /**
- * Props for `ProjectVideo`.
+ * Props for `Projects`.
  */
-export type ProjectVideoProps = SliceComponentProps<Content.ProjectVideoSlice>;
+export type ProjectsProps = SliceComponentProps<Content.ProjectsSlice>;
 
 /**
- * Component for "ProjectVideo" Slices.
+ * Component for "Projects" Slices.
  */
-const ProjectVideo: FC<ProjectVideoProps> = ({ slice }) => {
+const Projects: FC<ProjectsProps> = ({ slice }) => {
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      Placeholder component for project_video (variation: {slice.variation})
-      slices.
+      Placeholder component for projects (variation: {slice.variation}) slices.
       <br />
       <strong>You can edit this slice directly in your code editor.</strong>
       {/**
@@ -49,4 +48,4 @@ const ProjectVideo: FC<ProjectVideoProps> = ({ slice }) => {
   );
 };
 
-export default ProjectVideo;
+export default Projects;

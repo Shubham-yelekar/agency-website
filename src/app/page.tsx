@@ -19,8 +19,6 @@ export default async function Page() {
     },
   });
 
-  console.log(projectsResponse);
-
   return (
     <>
       <SliceZone slices={page.data.slices} components={components} />

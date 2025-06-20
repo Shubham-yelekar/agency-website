@@ -1,8 +1,8 @@
 {
-  "id": "project_video",
+  "id": "projects",
   "type": "SharedSlice",
-  "name": "ProjectVideo",
-  "description": "ProjectVideo",
+  "name": "Projects",
+  "description": "Projects",
   "variations": [
     {
       "id": "default",
@@ -12,13 +12,15 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "video": {
+        "all_projects": {
           "type": "Link",
           "config": {
-            "label": "video",
-            "placeholder": "",
-            "select": "media",
-            "allowText": true
+            "label": "All projects",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              "project"
+            ]
           }
         }
       },

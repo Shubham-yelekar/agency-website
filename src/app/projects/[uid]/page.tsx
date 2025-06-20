@@ -16,7 +16,6 @@ export default async function ProjectPage(context: {
   const client = createClient();
 
   const project = await client.getByUID("project", uid).catch(() => null);
-  console.log(project);
 
   if (!project) {
     notFound();
