@@ -1,0 +1,27 @@
+{
+  "id": "project_images",
+  "type": "SharedSlice",
+  "name": "ProjectImages",
+  "description": "ProjectImages",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "project_image": {
+          "type": "Image",
+          "config": {
+            "label": "project image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

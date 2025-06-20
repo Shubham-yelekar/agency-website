@@ -1,0 +1,28 @@
+{
+  "id": "project_video",
+  "type": "SharedSlice",
+  "name": "ProjectVideo",
+  "description": "ProjectVideo",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video_url": {
+          "type": "Link",
+          "config": {
+            "label": "Video url",
+            "placeholder": "",
+            "select": "media",
+            "allowText": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

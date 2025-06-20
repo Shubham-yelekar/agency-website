@@ -70,13 +70,39 @@
           "customtypes": ["industry"]
         }
       },
-      "services": {
-        "type": "Link",
+      "project_services": {
+        "type": "Group",
         "config": {
-          "label": "services",
-          "select": "document",
+          "label": "Project Services",
           "repeat": false,
-          "customtypes": ["service"]
+          "fields": {
+            "service": {
+              "type": "Link",
+              "config": {
+                "label": "Service",
+                "select": "document",
+                "repeat": false,
+                "customtypes": ["service"]
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "project_images": {
+              "type": "SharedSlice"
+            },
+            "project_video": {
+              "type": "SharedSlice"
+            },
+            "project_embed": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     }

@@ -1,0 +1,26 @@
+{
+  "id": "project_embed",
+  "type": "SharedSlice",
+  "name": "ProjectEmbed",
+  "description": "ProjectEmbed",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "embed_link": {
+          "type": "Embed",
+          "config": {
+            "label": "embed link",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -126,6 +126,26 @@ export type IndustryDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *project → Project Services*
+ */
+export interface ProjectDocumentDataProjectServicesItem {
+  /**
+   * Service field in *project → Project Services*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.project_services[].service
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  service: prismic.ContentRelationshipField<"service">;
+}
+
+type ProjectDocumentDataSlicesSlice =
+  | ProjectImagesSlice
+  | ProjectVideoSlice
+  | ProjectEmbedSlice;
+
+/**
  * Content for project documents
  */
 interface ProjectDocumentData {
@@ -208,15 +228,28 @@ interface ProjectDocumentData {
   industries: prismic.ContentRelationshipField<"industry">;
 
   /**
-   * services field in *project*
+   * Project Services field in *project*
    *
-   * - **Field Type**: Content Relationship
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.services
+   * - **API ID Path**: project.project_services[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  services: prismic.ContentRelationshipField<"service">;
+  project_services: prismic.GroupField<
+    Simplify<ProjectDocumentDataProjectServicesItem>
+  >;
+
+  /**
+   * Slice Zone field in *project*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice>;
 }
 
 /**
@@ -326,6 +359,141 @@ type HeroSliceVariation = HeroSliceDefault;
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
+/**
+ * Primary content in *ProjectEmbed → Default → Primary*
+ */
+export interface ProjectEmbedSliceDefaultPrimary {
+  /**
+   * embed link field in *ProjectEmbed → Default → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_embed.default.primary.embed_link
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  embed_link: prismic.EmbedField;
+}
+
+/**
+ * Default variation for ProjectEmbed Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectEmbedSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProjectEmbedSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProjectEmbed*
+ */
+type ProjectEmbedSliceVariation = ProjectEmbedSliceDefault;
+
+/**
+ * ProjectEmbed Shared Slice
+ *
+ * - **API ID**: `project_embed`
+ * - **Description**: ProjectEmbed
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectEmbedSlice = prismic.SharedSlice<
+  "project_embed",
+  ProjectEmbedSliceVariation
+>;
+
+/**
+ * Primary content in *ProjectImages → Default → Primary*
+ */
+export interface ProjectImagesSliceDefaultPrimary {
+  /**
+   * project image field in *ProjectImages → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_images.default.primary.project_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  project_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for ProjectImages Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectImagesSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProjectImagesSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProjectImages*
+ */
+type ProjectImagesSliceVariation = ProjectImagesSliceDefault;
+
+/**
+ * ProjectImages Shared Slice
+ *
+ * - **API ID**: `project_images`
+ * - **Description**: ProjectImages
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectImagesSlice = prismic.SharedSlice<
+  "project_images",
+  ProjectImagesSliceVariation
+>;
+
+/**
+ * Primary content in *ProjectVideo → Default → Primary*
+ */
+export interface ProjectVideoSliceDefaultPrimary {
+  /**
+   * Video url field in *ProjectVideo → Default → Primary*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_video.default.primary.video_url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  video_url: prismic.LinkToMediaField<prismic.FieldState, never>;
+}
+
+/**
+ * Default variation for ProjectVideo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectVideoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProjectVideoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProjectVideo*
+ */
+type ProjectVideoSliceVariation = ProjectVideoSliceDefault;
+
+/**
+ * ProjectVideo Shared Slice
+ *
+ * - **API ID**: `project_video`
+ * - **Description**: ProjectVideo
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectVideoSlice = prismic.SharedSlice<
+  "project_video",
+  ProjectVideoSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -356,6 +524,8 @@ declare module "@prismicio/client" {
       IndustryDocumentData,
       ProjectDocument,
       ProjectDocumentData,
+      ProjectDocumentDataProjectServicesItem,
+      ProjectDocumentDataSlicesSlice,
       ServiceDocument,
       ServiceDocumentData,
       AllDocumentTypes,
@@ -363,6 +533,18 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      ProjectEmbedSlice,
+      ProjectEmbedSliceDefaultPrimary,
+      ProjectEmbedSliceVariation,
+      ProjectEmbedSliceDefault,
+      ProjectImagesSlice,
+      ProjectImagesSliceDefaultPrimary,
+      ProjectImagesSliceVariation,
+      ProjectImagesSliceDefault,
+      ProjectVideoSlice,
+      ProjectVideoSliceDefaultPrimary,
+      ProjectVideoSliceVariation,
+      ProjectVideoSliceDefault,
     };
   }
 }
