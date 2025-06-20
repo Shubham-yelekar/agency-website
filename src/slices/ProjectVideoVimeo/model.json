@@ -1,8 +1,8 @@
 {
-  "id": "project_video",
+  "id": "project_video_vimeo",
   "type": "SharedSlice",
-  "name": "ProjectVideo",
-  "description": "ProjectVideo",
+  "name": "ProjectVideoVimeo",
+  "description": "ProjectVideoVimeo",
   "variations": [
     {
       "id": "default",
@@ -12,13 +12,11 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "video": {
-          "type": "Link",
+        "vimeo_url": {
+          "type": "Text",
           "config": {
-            "label": "video",
-            "placeholder": "",
-            "select": "media",
-            "allowText": true
+            "label": "Vimeo url",
+            "placeholder": ""
           }
         }
       },

@@ -74,7 +74,7 @@
         "type": "Group",
         "config": {
           "label": "Project Services",
-          "repeat": false,
+          "repeat": true,
           "fields": {
             "service": {
               "type": "Link",
@@ -93,6 +93,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "project_video_vimeo": {
+              "type": "SharedSlice"
+            },
+            "project_video_url": {
+              "type": "SharedSlice"
+            },
             "project_images": {
               "type": "SharedSlice"
             },

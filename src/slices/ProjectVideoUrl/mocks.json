@@ -1,0 +1,14 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"video_url": {
+				"__TYPE__": "FieldContent",
+				"value": "troops",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

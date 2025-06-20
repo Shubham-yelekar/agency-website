@@ -3,9 +3,9 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"video_url": {
+			"video": {
+				"key": "657b5fc3-b1b3-4bef-832b-c3fc6fa392aa",
 				"__TYPE__": "LinkContent",
-				"key": "e3170873-c1fa-400a-b71c-4d9b707c69e5",
 				"value": {
 					"__TYPE__": "FileLink",
 					"id": "mock_Media_link",
@@ -13,7 +13,7 @@
 					"name": "mock_name",
 					"url": "https://source.unsplash.com/daily",
 					"size": "0",
-					"text": "combination"
+					"text": "crack"
 				}
 			}
 		},

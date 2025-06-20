@@ -30,6 +30,11 @@ export default async function ProjectPage(context: {
         <PrismicRichText field={project.data.description} />
       </h1>
       <p className="text-neutral-50 uppercase">{project.data.industries.uid}</p>
+      <p className="text-neutral-50 uppercase">
+        {project.data.project_services
+          .map((s: any) => s.service.slug)
+          .join(", ")}
+      </p>
       <div>
         <SliceZone slices={project.data.slices} components={components} />
       </div>

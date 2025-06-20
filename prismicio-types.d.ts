@@ -141,6 +141,8 @@ export interface ProjectDocumentDataProjectServicesItem {
 }
 
 type ProjectDocumentDataSlicesSlice =
+  | ProjectVideoVimeoSlice
+  | ProjectVideoUrlSlice
   | ProjectImagesSlice
   | ProjectVideoSlice
   | ProjectEmbedSlice;
@@ -454,14 +456,14 @@ export type ProjectImagesSlice = prismic.SharedSlice<
  */
 export interface ProjectVideoSliceDefaultPrimary {
   /**
-   * Video url field in *ProjectVideo → Default → Primary*
+   * video field in *ProjectVideo → Default → Primary*
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_video.default.primary.video_url
+   * - **API ID Path**: project_video.default.primary.video
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  video_url: prismic.LinkToMediaField<prismic.FieldState, never>;
+  video: prismic.LinkToMediaField<prismic.FieldState, never>;
 }
 
 /**
@@ -492,6 +494,96 @@ type ProjectVideoSliceVariation = ProjectVideoSliceDefault;
 export type ProjectVideoSlice = prismic.SharedSlice<
   "project_video",
   ProjectVideoSliceVariation
+>;
+
+/**
+ * Primary content in *ProjectVideoUrl → Default → Primary*
+ */
+export interface ProjectVideoUrlSliceDefaultPrimary {
+  /**
+   * Video url field in *ProjectVideoUrl → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_video_url.default.primary.video_url
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  video_url: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for ProjectVideoUrl Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectVideoUrlSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProjectVideoUrlSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProjectVideoUrl*
+ */
+type ProjectVideoUrlSliceVariation = ProjectVideoUrlSliceDefault;
+
+/**
+ * ProjectVideoUrl Shared Slice
+ *
+ * - **API ID**: `project_video_url`
+ * - **Description**: ProjectVideoUrl
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectVideoUrlSlice = prismic.SharedSlice<
+  "project_video_url",
+  ProjectVideoUrlSliceVariation
+>;
+
+/**
+ * Primary content in *ProjectVideoVimeo → Default → Primary*
+ */
+export interface ProjectVideoVimeoSliceDefaultPrimary {
+  /**
+   * Vimeo url field in *ProjectVideoVimeo → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_video_vimeo.default.primary.vimeo_url
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  vimeo_url: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for ProjectVideoVimeo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectVideoVimeoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProjectVideoVimeoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProjectVideoVimeo*
+ */
+type ProjectVideoVimeoSliceVariation = ProjectVideoVimeoSliceDefault;
+
+/**
+ * ProjectVideoVimeo Shared Slice
+ *
+ * - **API ID**: `project_video_vimeo`
+ * - **Description**: ProjectVideoVimeo
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectVideoVimeoSlice = prismic.SharedSlice<
+  "project_video_vimeo",
+  ProjectVideoVimeoSliceVariation
 >;
 
 declare module "@prismicio/client" {
@@ -545,6 +637,14 @@ declare module "@prismicio/client" {
       ProjectVideoSliceDefaultPrimary,
       ProjectVideoSliceVariation,
       ProjectVideoSliceDefault,
+      ProjectVideoUrlSlice,
+      ProjectVideoUrlSliceDefaultPrimary,
+      ProjectVideoUrlSliceVariation,
+      ProjectVideoUrlSliceDefault,
+      ProjectVideoVimeoSlice,
+      ProjectVideoVimeoSliceDefaultPrimary,
+      ProjectVideoVimeoSliceVariation,
+      ProjectVideoVimeoSliceDefault,
     };
   }
 }
