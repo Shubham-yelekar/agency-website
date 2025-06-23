@@ -22,7 +22,7 @@ body {
   width: 400px;
   justify-content: center;
   overflow: hidden;
-  opacity: 0.5;
+  /* opacity: 0.5; */
   transform: scale(0) translateZ(0);
   transform-origin: center;
   position: absolute;
