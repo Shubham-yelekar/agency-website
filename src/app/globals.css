@@ -24,7 +24,7 @@ body {
   overflow: hidden;
   /* opacity: 0.5; */
   transform: scale(0) translateZ(0);
-  transform-origin: center;
+  /* transform-origin: center; */
   position: absolute;
   transform-style: preserve-3d;
   transition: all 0.1s ease-in-out;
