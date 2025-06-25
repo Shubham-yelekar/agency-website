@@ -1,0 +1,23 @@
+"use client";
+import React from "react";
+import { Canvas } from "@react-three/fiber";
+import { Experience } from "../components/Experience";
+
+const page = () => {
+  return (
+    <>
+      <Canvas
+        camera={{
+          position: [0, 0, 5],
+          fov: 30,
+        }}
+        style={{ height: "100vh", width: "100%" }}
+      >
+        <color attach="background" args={["#ececec"]} />
+        <Experience />
+      </Canvas>
+    </>
+  );
+};
+
+export default page;
