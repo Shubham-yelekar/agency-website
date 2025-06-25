@@ -2,6 +2,7 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "../components/Experience";
+import { ScrollControls } from "@react-three/drei";
 
 const page = () => {
   return (
@@ -14,7 +15,9 @@ const page = () => {
         style={{ height: "100vh", width: "100%" }}
       >
         <color attach="background" args={["#ececec"]} />
-        <Experience />
+        <ScrollControls pages={5} damping={0.3}>
+          <Experience />
+        </ScrollControls>
       </Canvas>
     </>
   );
