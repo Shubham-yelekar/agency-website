@@ -5,21 +5,22 @@ import * as THREE from "three";
 const Background = () => {
   return (
     <>
-      <Environment preset="sunset" />
+      <Environment
+        resolution={1080}
+        files="/citrus_orchard_puresky_2k.hdr"
+        // preset="night"
+        background
+      />
       <Sphere scale={[100, 100, 100]} rotation-y={Math.PI / 2}>
-        <LayerMaterial
-          lighting="physical"
-          transmission={1}
-          side={THREE.BackSide}
-        >
+        {/* <LayerMaterial color={"#ffffff"} side={THREE.BackSide}>
           <Gradient
-            colorA={"#070F2B"}
-            colorB={"#535C91"}
+            colorA={"#03001C"}
+            colorB={"#2D033B"}
             axes={"y"}
             start={0}
             end={-0.5}
           />
-        </LayerMaterial>
+        </LayerMaterial> */}
       </Sphere>
     </>
   );
