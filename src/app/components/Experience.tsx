@@ -44,13 +44,14 @@ export const Experience = () => {
       new THREE.Vector3(0, 0, -70),
       new THREE.Vector3(0, 0, -80),
       new THREE.Vector3(0, 0, -90),
-      new THREE.Vector3(0, 0, -100),
+      new THREE.Vector3(0, 2, -95),
+      new THREE.Vector3(0, 2, -100),
     ],
     [],
   );
 
   const curve = useMemo(() => {
-    return new THREE.CatmullRomCurve3(curvePoints, false, "catmullrom", 0.8);
+    return new THREE.CatmullRomCurve3(curvePoints, false, "catmullrom", 0.2);
   }, []);
 
   const textSections = useMemo(() => {
@@ -109,6 +110,12 @@ export const Experience = () => {
         anchorY: "bottom",
         text: "Year 2011",
       },
+      {
+        position: new Vector3(0, 3, -100),
+        anchorX: "center",
+        anchorY: "bottom",
+        text: "ARTFICIAL REALITY",
+      },
     ];
   }, []);
 
@@ -117,8 +124,8 @@ export const Experience = () => {
   }, [curve]);
   const shape = useMemo(() => {
     const shape = new THREE.Shape();
-    shape.moveTo(0, -1);
-    shape.lineTo(0, 1); // Bottom-right corner
+    shape.moveTo(0, -0.5);
+    shape.lineTo(0, 0.5); // Bottom-right corner
     return shape;
   }, [curve]);
   const cameraGroup = useRef<THREE.Group | null>(null);
@@ -134,10 +141,12 @@ export const Experience = () => {
       new THREE.Vector3();
 
     const xDisplacement = (pointAhead.x - curPoint.x) * 80;
-
+    const direction = new THREE.Vector3()
+      .subVectors(pointAhead, curPoint)
+      .normalize();
     const angleRotation =
       (xDisplacement < 0 ? 1 : -1) *
-      Math.min(Math.abs(xDisplacement), Math.PI / 3);
+      Math.min(Math.abs(xDisplacement), Math.PI / 2);
 
     // const targetAirplaneQuaternion = new THREE.Quaternion().setFromEuler(
     //   new THREE.Euler(
@@ -146,16 +155,17 @@ export const Experience = () => {
     //     angleRotation,
     //   ),
     // );
-    // const targetCameraQuaternion = new THREE.Quaternion().setFromEuler(
-    //   new THREE.Euler(
-    //     cameraGroup.current.rotation.x,
-    //     angleRotation,
-    //     cameraGroup.current.rotation.z,
-    //   ),
-    // );
+    const targetCameraQuaternion = new THREE.Quaternion().setFromEuler(
+      new THREE.Euler(
+        Math.atan2(direction.y, Math.sqrt(direction.x ** 4 + direction.z ** 4)),
+        Math.atan2(-direction.x, -direction.z),
+        0,
+      ),
+    );
+
     // airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 2);
-    // cameraGroup.current?.quaternion.slerp(targetCameraQuaternion, delta * 2);
-    cameraGroup.current?.position.lerp(curPoint, delta * 50);
+    cameraGroup.current?.quaternion.slerp(targetCameraQuaternion, delta * 2);
+    cameraGroup.current?.position.lerp(curPoint, delta * 24);
   });
   const airplane = useRef<THREE.Group | null>(null);
   return (
@@ -164,7 +174,7 @@ export const Experience = () => {
       <directionalLight position={[0, 3, 1]} intensity={0.1} />
       <Background />
       <group ref={cameraGroup}>
-        <Speed />
+        {/* <Speed /> */}
         <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
         {/* <group ref={airplane}>
           <Float floatIntensity={2} speed={1}>
