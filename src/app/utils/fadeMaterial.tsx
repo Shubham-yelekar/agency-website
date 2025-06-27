@@ -26,7 +26,7 @@ const replaceFragmentShader = (fragmentShader: any) =>
     .replace(
       `vec4 diffuseColor = vec4( diffuse, opacity );`,
       `
-float fadeDist = 20.0;
+float fadeDist = 10.0;
 float dist = length(vViewPosition);
 
 float fadeOpacity = smoothstep(fadeDist, 0.0, dist);

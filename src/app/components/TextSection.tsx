@@ -16,8 +16,8 @@ export const TextSection = ({
         color="white"
         anchorX={anchorX}
         anchorY={anchorY}
-        fontSize={0.28}
-        maxWidth={8}
+        fontSize={0.24}
+        maxWidth={4}
         lineHeight={1.2}
         font={font}
         textAlign="center"
@@ -25,6 +25,8 @@ export const TextSection = ({
         {text}
         <meshStandardMaterial
           color={"white"}
+          emissive={"white"}
+          emissiveIntensity={3}
           onBeforeCompile={fadeOnBeforeCompileFlat}
         />
       </Text>
