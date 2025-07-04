@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { ReactLenis, useLenis } from "lenis/react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Video from "next-video";
+
 gsap.registerPlugin(ScrollTrigger);
 const page = () => {
   useEffect(() => {
@@ -18,6 +20,7 @@ const page = () => {
       y: 0,
       z: -2000,
       // filter: "blur(20px)",
+      opacity: 0.2,
       transformOrigin: "center",
       transformStyle: "preserve-3d",
     });
@@ -34,10 +37,10 @@ const page = () => {
     cards.forEach((card, index) => {
       // const random =Math.random()%4 ;
       const direction = index % 4;
-      const scaleStart = 0.5;
+      const scaleStart = 0.1;
       const scaleUp = 1;
-      const opacityStart = 1;
-      const opacityEnd = 0.8;
+      const opacityStart = 0.5;
+      const opacityEnd = 0;
       if (direction === 0) {
         // top card
         tl.to(
@@ -180,11 +183,21 @@ const page = () => {
   return (
     <>
       <ReactLenis root>
-        <div className="flex h-[90dvh] items-center justify-center bg-neutral-900 font-mono">
+        <div className="flex h-[90dvh] items-center justify-center font-mono">
           Journey page
         </div>
+
         <div className="canvas relative m-auto flex h-screen items-center justify-center gap-4 overflow-hidden font-mono perspective-[2000px]">
           {generateRows()}
+          <video
+            src="/bg-video.mp4"
+            className="absolute z-[-2] h-auto w-full opacity-80"
+            muted
+            autoPlay
+            playsInline
+            loop
+          ></video>
+          <div className="backgroundColor absolute z-[-1] h-full w-full"></div>
         </div>
         <div className="flex h-[90dvh] items-center justify-center bg-neutral-900 font-mono">
           Footer page

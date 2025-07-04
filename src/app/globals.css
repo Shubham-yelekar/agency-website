@@ -46,3 +46,12 @@ body {
   background-color: white;
   height: 10%;
 } */
+
+.backgroundColor {
+  background: radial-gradient(
+    65.86% 65.86% at 50% 50%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.59) 85.59%,
+    #000 100%
+  );
+}
